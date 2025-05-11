@@ -58,11 +58,6 @@ export const HowItWorks: React.FC = () => {
                                         View Smart Contract on {explorerName}
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="https://twitter.com/cobie/status/1702020681321304487" target="_blank" rel="noopener noreferrer" className="text-brand-green hover:underline">
-                                        Cobie's Mandate (Tweet)
-                                    </a>
-                                </li>
                             </ul>
                         </div>
                     </div>
