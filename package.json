@@ -1,17 +1,22 @@
 {
   "scripts": {
     "deploy:local": "tsx scripts/deployPoolLocal.ts",
-    "deploy:mainnet": "tsx scripts/deployMainnet.ts"
+    "deploy:mainnet": "tsx scripts/deployMainnet.ts",
+    "decode_contract": "tsx scripts/decode_metadata.ts"
   },
   "dependencies": {
     "hardhat": "^2.24.0"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox-viem": "^3.0.0",
+    "@nomicfoundation/hardhat-verify": "^2.0.13",
     "@openzeppelin/contracts": "^5.3.0",
     "@types/node": "^22.15.17",
     "axios": "^1.9.0",
+    "bs58": "^6.0.0",
+    "cbor": "^10.0.3",
     "dotenv": "^16.5.0",
+    "ethers": "^6.14.0",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"
   }

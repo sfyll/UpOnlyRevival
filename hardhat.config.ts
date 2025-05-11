@@ -1,27 +1,41 @@
 import type { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox-viem";
-import dotenv from "dotenv"; 
+import "@nomicfoundation/hardhat-verify";     
+import dotenv from "dotenv";
+dotenv.config();
 
-dotenv.config(); 
+/* ─── ENV ─────────────────────────────────────────────────────────────── */
+const ALCHEMY_KEY   = process.env.ALCHEMY_API_KEY_MAINNET ?? "";
+const PRIVATE_KEY   = process.env.PRIVATE_KEY            ?? "";  
+const ETHERSCAN_KEY = process.env.ETHERSCAN_KEY           ?? "";
 
-const alchemyApiKeyMainnet = process.env.ALCHEMY_API_KEY_MAINNET;
-
-if (!alchemyApiKeyMainnet) {
-  console.warn(
-    "ALCHEMY_API_KEY_MAINNET is not set in .env file. Mainnet forking might fail."
-  );
-}
-
+/* ─── CONFIG ──────────────────────────────────────────────────────────── */
 const config: HardhatUserConfig = {
-  solidity: "0.8.24", // Your contract uses 0.8.24, ensure this matches
+  solidity: {
+    version: "0.8.24",
+    settings: { optimizer: { enabled: true, runs: 200 } },   // match production bytecode
+  },
+  defaultNetwork: "hardhat",
+
   networks: {
     hardhat: {
-      forking: {
-        url: `https://eth-mainnet.g.alchemy.com/v2/${alchemyApiKeyMainnet}`, 
-        // blockNumber: 19_000_000 // Example, uncomment and set if you want to pin
-      },
-        chainId: 1,
+      forking: ALCHEMY_KEY
+        ? {
+            url: `https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}`,
+          }
+        : undefined,
+      chainId: 1,
     },
+
+    mainnet: {
+      url: `https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}`,
+      accounts: PRIVATE_KEY ? [PRIVATE_KEY] : [],
+      chainId: 1,
+    },
+  },
+
+  etherscan: {
+    apiKey: { mainnet: ETHERSCAN_KEY },       
   },
 };
 
