@@ -1,17 +1,15 @@
-import { parseEther } from 'viem';
+import { parseEther, type Chain } from 'viem';
 import { mainnet } from 'viem/chains';
 
 export const IS_DEVELOPMENT = import.meta.env.DEV;
 
 export const LOCAL_RPC = 'http://127.0.0.1:8545';
-
-export let ACTIVE_CHAIN = mainnet;
+let activeChainConfig: Chain;
 if (IS_DEVELOPMENT) {
     // When using Anvil with --chain-id 1 to mimic mainnet for signature verification
-    ACTIVE_CHAIN = {
+    activeChainConfig = {
         ...mainnet,
         id: 1, // Ensure the ID is 1 for the chain object used by Viem
-        name: 'Anvil Mainnet Fork (ID 1)',
         // rpcUrls are not strictly needed here for publicClient if we override transport,
         // but good for completeness if something else tried to use them.
         rpcUrls: {
@@ -19,7 +17,12 @@ if (IS_DEVELOPMENT) {
             public: { http: [LOCAL_RPC] },
         }
     };
+} else {
+    activeChainConfig = mainnet;
 }
+
+export const ACTIVE_CHAIN: Chain = activeChainConfig;
+
 
 export const POOL_CONTRACT_ADDRESS = '0xb2759d3f3487f52d45cc00c5b40f81f5e2e12d64' as `0x${string}`; 
 export const TARGET_NFT_PRICE_ETH_STRING = "10000"; 

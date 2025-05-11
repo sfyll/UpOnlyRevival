@@ -8,20 +8,8 @@ export const HowItWorks: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false); 
 
     let explorerName = "Block Explorer";
-    let explorerBaseUrl = "#";
 
-    if (IS_DEVELOPMENT ) {
-        explorerName = ACTIVE_CHAIN.blockExplorers.default.name || "Testnet Explorer";
-        explorerBaseUrl = ACTIVE_CHAIN.blockExplorers.default.url;
-    }
-    else if (!IS_DEVELOPMENT && mainnet.blockExplorers?.default?.url) {
-        explorerName = mainnet.blockExplorers.default.name || "Etherscan";
-        explorerBaseUrl = mainnet.blockExplorers.default.url;
-    }
-    const contractLink = (explorerBaseUrl !== "#" && POOL_CONTRACT_ADDRESS && !POOL_CONTRACT_ADDRESS.startsWith('0xReplace'))
-        ? `${explorerBaseUrl}/address/${POOL_CONTRACT_ADDRESS}#code`
-        : '#';
-
+    const contractLink = "https://etherscan.io/address/0xb2759d3f3487f52d45cc00c5b40f81f5e2e12d64#code" 
 
     return (
         <section className="pt-6 pb-12 md:pt-8 md:pb-16 bg-brand-dark"> {/* Reduced padding slightly */}

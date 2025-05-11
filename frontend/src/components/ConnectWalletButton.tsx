@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppChain } from '../hooks/useAppChain';
 
 export const ConnectWalletButton: React.FC = () => {
-    const { connectWallet, account, isLoading, error, targetChain, isOnCorrectChain } = useAppChain();
+    const { connectWallet, account, isLoading, error, isOnCorrectChain } = useAppChain();
 
     if (account) {
         return (

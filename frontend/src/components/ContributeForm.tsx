@@ -1,6 +1,4 @@
-// frontend/src/components/ContributeForm.tsx
 import React, { useState, useEffect, useRef } from 'react';
-// ... other imports from your previous working version ...
 import { useAppChain } from '../hooks/useAppChain';
 import { usePoolContractData } from '../hooks/usePoolContractData';
 import { POOL_CONTRACT_ADDRESS } from '../config';
@@ -60,12 +58,7 @@ export const ContributeForm: React.FC = () => {
             await refreshPoolData();
         } catch (err: any) {
             console.error("Contribution error:", err);
-            if (err instanceof BaseError) {
-                const NftPoolError = err.walk(e => e.contractName === 'NftPoolAndTriggerBuy');
-                if (NftPoolError instanceof TransactionExecutionError) {
-                    setError(`Contract error: ${NftPoolError.shortMessage}`);
-                } else { setError(err.shortMessage || "An unknown contract error occurred."); }
-            } else { setError(err.message || "An unexpected error occurred during contribution."); }
+             { setError(err.message || "An unexpected error occurred during contribution."); }
         } finally { setIsLoading(false); }
     };
 

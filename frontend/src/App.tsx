@@ -1,4 +1,3 @@
-import React from 'react';
 import { Hero } from './components/Hero';
 import { GoalProgress } from './components/GoalProgress';
 import { ContributeForm } from './components/ContributeForm';
