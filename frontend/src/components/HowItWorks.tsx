@@ -1,7 +1,6 @@
 // frontend/src/components/HowItWorks.tsx
 import React, { useState } from 'react';
-import { POOL_CONTRACT_ADDRESS, ACTIVE_CHAIN, IS_DEVELOPMENT, TARGET_NFT_CONTRACT_ADDRESS, TARGET_NFT_TOKEN_ID_MAINNET } from '../config';
-import { mainnet } from 'viem/chains';
+import { TARGET_NFT_CONTRACT_ADDRESS, TARGET_NFT_TOKEN_ID_MAINNET } from '../config';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid'; // npm install @heroicons/react
 
 export const HowItWorks: React.FC = () => {
@@ -55,7 +54,7 @@ export const HowItWorks: React.FC = () => {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href={contractLink} target="_blank" rel="noopener noreferrer" className={`text-brand-green hover:underline ${contractLink === '#' ? 'opacity-50 cursor-not-allowed' : ''}`}>
+                                    <a href={contractLink} target="_blank" rel="noopener noreferrer" className={`text-brand-green hover:underline ${contractLink? 'opacity-50 cursor-not-allowed' : ''}`}>
                                         View Smart Contract on {explorerName}
                                     </a>
                                 </li>

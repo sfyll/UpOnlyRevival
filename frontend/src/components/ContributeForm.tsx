@@ -4,7 +4,7 @@ import { usePoolContractData } from '../hooks/usePoolContractData';
 import { POOL_CONTRACT_ADDRESS } from '../config';
 import NftPoolAbi from '../abis/NftPoolAndTriggerBuy.json';
 import { getSeaportOrderParameters, type BasicOrderParametersForEfficient } from '../services/seaportService';
-import { parseEther, TransactionExecutionError, BaseError } from 'viem';
+import { parseEther } from 'viem';
 import { ConnectWalletButton } from './ConnectWalletButton';
 
 export const ContributeForm: React.FC = () => {
